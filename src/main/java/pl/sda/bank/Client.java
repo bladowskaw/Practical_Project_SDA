@@ -1,3 +1,7 @@
+package pl.sda.bank;
+
+import pl.sda.bank.Account;
+
 import java.math.BigDecimal;
 import java.util.List;
 

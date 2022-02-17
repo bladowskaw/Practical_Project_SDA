@@ -1,3 +1,7 @@
+package pl.sda.bank;
+
+import pl.sda.bank.Account;
+
 import java.util.List;
 
 public class Bank {
