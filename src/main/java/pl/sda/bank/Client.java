@@ -1,10 +1,15 @@
 package pl.sda.bank;
 
-import pl.sda.bank.Account;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Data
+@Getter
+@NoArgsConstructor
 public class Client {
 
     private String clientId;

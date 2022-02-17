@@ -1,9 +1,14 @@
 package pl.sda.bank;
 
-import pl.sda.bank.Account;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@Getter
+@NoArgsConstructor
 public class Bank {
 
    private List<Client> clientList;
