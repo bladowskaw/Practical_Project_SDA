@@ -1,3 +1,5 @@
+package pl.sda.bank;
+
 import java.math.BigDecimal;
 
 public class Account {
