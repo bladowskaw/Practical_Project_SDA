@@ -18,10 +18,10 @@ public class Client {
     private String clientId;
     private String firstName;
     private String lastName;
-    private String address; //klasa
+    private Address address;
     private List<Account> accountList;
 
-    public Client(String s, String alex, String b, String koszalin, List<Account> listaKontClienta) {
+    public Client(String clientId, String firstName, String lastName, Address address, List<Account> accountList) {
     }
 
     public List<Account> createNewAccount(List<Account> accountList, Account account) {
