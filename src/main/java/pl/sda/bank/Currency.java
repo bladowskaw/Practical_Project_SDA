@@ -8,10 +8,12 @@ public enum Currency {
     private final String currencyName;
 
     Currency(String currencyName) {
+
         this.currencyName = currencyName;
     }
 
     public String getCurrencyName () {
+
         return currencyName;
     }
 }
