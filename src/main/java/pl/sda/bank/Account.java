@@ -1,24 +1,28 @@
 package pl.sda.bank;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import pl.sda.bank.exceptions.BalanceToLowException;
 
 import java.math.BigDecimal;
 
-@Data
 @Getter
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class Account {
 
-    private String accountNumber;
-    private BigDecimal accountBalance;
-    private Currency currency;
+    private final String accountNumber;
+    private final Currency currency;
+    private BigDecimal accountBalance = new BigDecimal(0);
 
-    public static void addToAccount(BigDecimal cash) {
+    public void addToAccount(BigDecimal cash) {
+        accountBalance = accountBalance.add(cash);
     }
 
-    public void subtractFromAccount(BigDecimal cash) {
+    public void subtractFromAccount(BigDecimal cash) throws BalanceToLowException {
+        if (cash.compareTo(accountBalance) > 0){
+            throw new BalanceToLowException();
+        }
+        accountBalance = accountBalance.subtract(cash);
         //porównaj czy kasa <= stan konta
 
     }
