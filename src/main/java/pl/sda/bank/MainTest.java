@@ -15,10 +15,12 @@ public class MainTest {
 
         List<Account> listClient1 = new ArrayList<>();
 
-        Client client1 = new Client("1", "Alex", "b", "Koszalin", listClient1);
+        Address address = new Address("Koszalin", "Długa", "55", "15", "71-005");
+
+        Client client1 = new Client("1", "Alex", "b", address, listClient1);
         Account accountAlex1 = new Account("57775757", Currency.PLN);
         Account accountAlex2 = new Account("999997", Currency.PLN);
-        //client1.createNewAccount(listClient1,accountAlex1);
+        client1.createNewAccount(listClient1,accountAlex1);
         client1.createNewAccount(listClient1, accountAlex2);
         System.out.println(listClient1);
         client1.removeAccount(accountAlex1, listClient1);
