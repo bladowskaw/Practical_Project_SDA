@@ -33,6 +33,11 @@ public class Bank {
         clientList.add(client);
     }
 
+    public void addNewClient(String firstName, String lastName, Address address) {
+        clientList.add(new Client(firstName, lastName,address));
+
+    }
+
     public List<Client> removeClient(Client client) throws ClientNotFoundExeption {
         if (clientList.contains(client)) {
             clientList.remove(client);

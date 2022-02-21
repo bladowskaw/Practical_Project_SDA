@@ -23,6 +23,13 @@ public class Client {
     private Address address;
     private List<Account> accountList = new ArrayList<>();
 
+    public Client(String firstName, String lastName, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+    }
+
+
     public void createNewAccount() {
         Account account = new Account();
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +37,10 @@ public class Client {
         account.setCurrency(Currency.valueOf(scanner.nextLine()));
         account.setAccountNumber(scanner.nextLine());
         accountList.add(account);
+    }
+
+    public void createNewAccount(String accountNumber, Currency currency) {
+        accountList.add(new Account(accountNumber,currency));
     }
 
     public List<Account> removeAccount(Account account) throws AccountNotFoundException {
