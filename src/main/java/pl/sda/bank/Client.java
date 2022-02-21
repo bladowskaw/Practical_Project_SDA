@@ -25,6 +25,7 @@ public class Client {
     }
 
     public List<Account> createNewAccount(List<Account> accountList, Account account) {
+
         accountList.add(account);
         return accountList;
     }
@@ -47,7 +48,7 @@ public class Client {
     }
 
     public static void withdrawCash(Account account, BigDecimal cash) throws BalanceToLowException, CashIsNegativeException {
-        if (cash.compareTo(new BigDecimal(0)) >= 0) {
+        if (cash.compareTo(new BigDecimal(0)) >= 0) { //>= accountBalance?
             account.subtractFromAccount(cash);
         } else {
             throw new CashIsNegativeException();
