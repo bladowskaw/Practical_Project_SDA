@@ -6,7 +6,9 @@ import pl.sda.bank.exceptions.BalanceToLowException;
 import pl.sda.bank.exceptions.CashIsNegativeException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Data
 @Getter
@@ -19,18 +21,18 @@ public class Client {
     private String firstName;
     private String lastName;
     private Address address;
-    private List<Account> accountList;
+    private List<Account> accountList = new ArrayList<>();
 
-    public Client(String clientId, String firstName, String lastName, Address address, List<Account> accountList) {
-    }
-
-    public List<Account> createNewAccount(List<Account> accountList, Account account) {
-
+    public void createNewAccount() {
+        Account account = new Account();
+        Scanner scanner = new Scanner(System.in);
+        account.setAccountNumber(scanner.nextLine());
+        account.setCurrency(Currency.valueOf(scanner.nextLine()));
+        account.setAccountNumber(scanner.nextLine());
         accountList.add(account);
-        return accountList;
     }
 
-    public List<Account> removeAccount(Account account, List<Account> accountList) throws AccountNotFoundException {
+    public List<Account> removeAccount(Account account) throws AccountNotFoundException {
         if (accountList.contains(account)) {
             accountList.remove(account);
         } else {

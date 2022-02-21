@@ -4,10 +4,11 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.sda.bank.exceptions.CashIsNegativeException;
 import pl.sda.bank.exceptions.ClientNotFoundExeption;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 @Data
 @Getter
@@ -15,16 +16,24 @@ import java.util.List;
 @NoArgsConstructor
 public class Bank {
 
-    private List<Client> clientList;
-    private List<Account> accountList;
+    private List<Client> clientList = new ArrayList<>();
 
-    public List<Client> addNewClient(List<Client> clientList, Client client) {
+    public void addNewClient() {
+        Client client = new Client();
+        Scanner scanner = new Scanner(System.in);
+        client.setFirstName(scanner.nextLine());
+        client.setLastName(scanner.nextLine());
+        Address address = new Address();
+        address.setTownName(scanner.nextLine());
+        address.setStreetName(scanner.nextLine());
+        address.setStreetNumber(scanner.nextLine());
+        address.setFlatNumber(scanner.nextLine());
+        address.setZipCode(scanner.nextLine());
+        client.setAddress(address);
         clientList.add(client);
-        return clientList;
     }
 
-
-    public List<Client> removeClient(List<Client> clientList, Client client) throws ClientNotFoundExeption {
+    public List<Client> removeClient(Client client) throws ClientNotFoundExeption {
         if (clientList.contains(client)) {
             clientList.remove(client);
         } else {

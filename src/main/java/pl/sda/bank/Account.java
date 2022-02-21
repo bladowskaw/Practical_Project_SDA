@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import pl.sda.bank.exceptions.BalanceToLowException;
-import pl.sda.bank.exceptions.CashIsNegativeException;
 
 import java.math.BigDecimal;
 
@@ -15,8 +14,8 @@ import java.math.BigDecimal;
 @ToString
 public class Account {
 
-    private final String accountNumber;
-    private final Currency currency;
+    private String accountNumber;
+    private Currency currency;
     private BigDecimal accountBalance = new BigDecimal(0);
 
     public void addToAccount(BigDecimal cash) {
