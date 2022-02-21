@@ -1,23 +1,26 @@
 package pl.sda.bank;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import pl.sda.bank.exceptions.BalanceToLowException;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @ToString
+@NoArgsConstructor
 public class Account {
+
+
+    public Account(String accountNumber, Currency currency) {
+        this.accountNumber = accountNumber;
+        this.currency = currency;
+    }
 
     private String accountNumber;
     private Currency currency;
     private BigDecimal accountBalance = new BigDecimal(0);
-
+        // poprawić warunki logiczne, wartości ujemne - wpłata, wypłata
     public void addToAccount(BigDecimal cash) {
         accountBalance = accountBalance.add(cash);
     }
