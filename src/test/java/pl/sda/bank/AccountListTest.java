@@ -2,16 +2,17 @@ package pl.sda.bank;
 
 import org.junit.jupiter.api.Test;
 import pl.sda.bank.exceptions.BalanceToLowException;
+import pl.sda.bank.exceptions.CashIsNegativeException;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-class AccountTest {
+class AccountListTest {
 
     @Test
-    void addToAccount_shouldIncreaseBalance() {
+    void addToAccount_shouldIncreaseBalance() throws CashIsNegativeException {
         //given
         var account = new Account("0001", Currency.PLN);
 
@@ -23,7 +24,7 @@ class AccountTest {
     }
 
     @Test
-    void subtractFromAccount_shouldDecreaseBalance() throws BalanceToLowException {
+    void subtractFromAccount_shouldDecreaseBalance() throws BalanceToLowException, CashIsNegativeException {
         //given
         var account = new Account("0001", Currency.PLN);
         account.addToAccount(new BigDecimal("300"));
@@ -36,7 +37,7 @@ class AccountTest {
     }
 
     @Test
-    void subtractFromAccount_shouldThrowExceptionWhenBalanceToLow() {
+    void subtractFromAccount_shouldThrowExceptionWhenBalanceToLow() throws CashIsNegativeException {
         //given
         var account = new Account("0001", Currency.PLN);
         account.addToAccount(new BigDecimal("100"));

@@ -34,7 +34,7 @@ public class Bank {
     }
 
     public void addNewClient(String firstName, String lastName, Address address) {
-        clientList.add(new Client(firstName, lastName,address));
+        clientList.add(new Client(firstName, lastName, address));
 
     }
 
@@ -46,6 +46,6 @@ public class Bank {
         }
 
         return this.clientList;
-
     }
+
 }

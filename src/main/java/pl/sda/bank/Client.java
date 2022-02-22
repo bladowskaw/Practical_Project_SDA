@@ -1,5 +1,4 @@
 package pl.sda.bank;
-
 import lombok.*;
 import pl.sda.bank.exceptions.AccountNotFoundException;
 import pl.sda.bank.exceptions.BalanceToLowException;
