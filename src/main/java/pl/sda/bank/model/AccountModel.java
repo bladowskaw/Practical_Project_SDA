@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Entity
 @NoArgsConstructor
 @Data
-public class AccountList {
+public class AccountModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ACC_ID")
@@ -23,5 +23,5 @@ public class AccountList {
     private BigDecimal accountBalance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACC_CLI_ID", referencedColumnName = "ACC_ID")
-    private ClientList clientList;
+    private ClientModel clientList;
 }

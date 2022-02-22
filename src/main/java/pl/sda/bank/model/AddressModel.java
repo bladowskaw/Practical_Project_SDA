@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Data
-public class AddressList {
+public class AddressModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
