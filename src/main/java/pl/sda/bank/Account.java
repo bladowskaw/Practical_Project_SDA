@@ -2,6 +2,8 @@ package pl.sda.bank;
 
 import lombok.*;
 import pl.sda.bank.exceptions.BalanceToLowException;
+import pl.sda.bank.exceptions.CashIsNegativeException;
+import pl.sda.bank.functionInterface.AddCashToAccount;
 
 import java.math.BigDecimal;
 
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Account {
+public class Account implements AddCashToAccount {
 
 
     public Account(String accountNumber, Currency currency) {
@@ -20,18 +22,22 @@ public class Account {
     private String accountNumber;
     private Currency currency;
     private BigDecimal accountBalance = new BigDecimal(0);
-        // poprawić warunki logiczne, wartości ujemne - wpłata, wypłata
-    public void addToAccount(BigDecimal cash) {
-        accountBalance = accountBalance.add(cash);
+
+    public void addToAccount(BigDecimal cash) throws CashIsNegativeException {
+        if (cash.compareTo(BigDecimal.ZERO) > 0) {
+            accountBalance = accountBalance.add(cash);
+        } else {
+            throw new CashIsNegativeException();
+        }
     }
 
-    public void subtractFromAccount(BigDecimal cash) throws BalanceToLowException {
-        if (cash.compareTo(accountBalance) > 0) {
+    public void subtractFromAccount(BigDecimal cash) throws BalanceToLowException, CashIsNegativeException {
+        if (accountBalance.compareTo(cash) < 0) {
             throw new BalanceToLowException();
+        } else if (cash.compareTo(BigDecimal.ZERO) < 0) {
+            throw new CashIsNegativeException();
         }
         accountBalance = accountBalance.subtract(cash);
-        //porównaj czy kasa <= stan konta
-
     }
 
 }
