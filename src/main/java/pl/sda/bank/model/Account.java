@@ -23,7 +23,7 @@ public class Account {
     @Column(name = "ACC_BALANCE")
     public BigDecimal accountBalance = new BigDecimal("0");
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACC_CLI_ID", referencedColumnName = "ACC_ID")
+    @JoinColumn(name = "ACC_CLI_ID", referencedColumnName = "CLI_ID")
     public Client clientList;
 }
 
