@@ -1,47 +1,38 @@
-//package pl.sda.bank;
-//
-//import org.junit.jupiter.api.Test;
-//
-//public class ClientTest {
-//
-//    @Test
-//    void createNewAccount_shouldAddNewAccount() {
-//        //given
-//        Client client = new Client();
-//        //when
-//        Account account = new Account();
-//
-//        //then
-//
-//
-//    }
-//
-//    @Test
-//    void removeAccount_shouldRemoveAccount() {
-//        //given
-//        Client client = new Client();
-//        //when
-//        //client.removeAccount();
-//        //then
-//
-//    }
-//
-//    @Test
-//    void depositCash_shouldAddCash() {
-//        //given
-//
-//        //when
-//
-//        //then
-//    }
-//
-//    @Test
-//    void withdrawCash_shouldSubtract() {
-//        //given
-//
-//        //when
-//
-//        //then
-//    }
-//
-//}
+package pl.sda.bank;
+
+import org.junit.jupiter.api.Test;
+import pl.sda.bank.exceptions.AccountNotFoundException;
+import pl.sda.bank.service.AccountService;
+import pl.sda.bank.service.ClientService;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+
+class ClientTest {
+
+    @Test
+    void removeAccount_shouldRemoveAccountFromList() throws AccountNotFoundException {
+        //given
+        ClientService client = new ClientService();
+        client.createNewAccount("123", Currency.PLN);
+
+        //when
+        client.removeAccount(new AccountService("123",Currency.PLN));
+
+        //than
+        assertThat(client.getAccountList().size()).isEqualTo(0);
+    }
+    @Test
+    void createNewAccount_shouldAddNewAccountToList() {
+        //given
+        ClientService client = new ClientService();
+
+        //when
+        client.createNewAccount("123", Currency.PLN);
+        client.createNewAccount("234",Currency.PLN);
+
+        //than
+        assertThat(client.getAccountList().size()).isEqualTo(2);
+    }
+
+}

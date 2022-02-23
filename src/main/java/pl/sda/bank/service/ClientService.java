@@ -1,12 +1,12 @@
 package pl.sda.bank.service;
 
 import lombok.*;
-import pl.sda.bank.Address;
 import pl.sda.bank.Currency;
 import pl.sda.bank.exceptions.AccountNotFoundException;
 import pl.sda.bank.exceptions.BalanceToLowException;
 import pl.sda.bank.exceptions.CashIsNegativeException;
-import pl.sda.bank.model.ClientModel;
+import pl.sda.bank.model.Address;
+import pl.sda.bank.model.Client;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ClientService extends ClientModel {
+public class ClientService extends Client {
 
     public ClientService(String firstName, String lastName, Address address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
+        super.firstName = firstName;
+        super.lastName = lastName;
+        super.address = address;
     }
 
     public void createNewAccount(String accountNumber, Currency currency) {
