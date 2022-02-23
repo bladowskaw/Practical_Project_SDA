@@ -2,7 +2,6 @@ package pl.sda.bank.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.sda.bank.Address;
 import pl.sda.bank.service.AccountService;
 
 import javax.persistence.*;
@@ -12,7 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
-public class ClientModel {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CLI_ID")

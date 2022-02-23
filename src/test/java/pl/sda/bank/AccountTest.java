@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
-class AccountListTest {
+class AccountTest {
 
     @Test
     void addToAccount_shouldIncreaseBalance() throws CashIsNegativeException {
@@ -22,6 +22,20 @@ class AccountListTest {
 
         //then
         assertThat(account.getAccountBalance()).isEqualTo("100");
+    }
+
+    @Test
+    void addToAccount_shouldThrowExceptionWhenCashIsNegative() throws CashIsNegativeException {
+        //given
+        var account = new AccountService("0001", Currency.PLN);
+
+        //when
+        Throwable thrown = catchThrowable(() ->
+                account.addToAccount(new BigDecimal("-100"))
+        );
+
+        //then
+        assertThat(thrown).isInstanceOf(CashIsNegativeException.class);
     }
 
     @Test
@@ -50,5 +64,18 @@ class AccountListTest {
 
         //then
         assertThat(thrown).isInstanceOf(BalanceToLowException.class);
+    }
+    @Test
+    void subtractFromAccount_shouldThrowExceptionWhenCashIsNegative() throws CashIsNegativeException {
+        //given
+        var account = new AccountService("0001", Currency.PLN);
+
+        //when
+        Throwable thrown = catchThrowable(() ->
+                account.subtractFromAccount(new BigDecimal("-100"))
+        );
+
+        //then
+        assertThat(thrown).isInstanceOf(CashIsNegativeException.class);
     }
 }
