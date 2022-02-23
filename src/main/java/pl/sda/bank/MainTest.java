@@ -1,9 +1,13 @@
 package pl.sda.bank;
 
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import pl.sda.bank.exceptions.BalanceToLowException;
 import pl.sda.bank.exceptions.CashIsNegativeException;
 import pl.sda.bank.exceptions.ClientNotFoundExeption;
+import pl.sda.bank.model.Address;
 import pl.sda.bank.service.AccountService;
 import pl.sda.bank.service.BankService;
 
@@ -61,14 +65,19 @@ public class MainTest {
         System.out.println("**************************");
 
 
-        bank.getClientList().get(0).getAccountList().get(0).subtractFromAccount(BigDecimal.valueOf(1600.00));
+      /*  bank.getClientList().get(0).getAccountList().get(0).subtractFromAccount(BigDecimal.valueOf(1500.00));
 
         System.out.println(bank.getClientList().stream()
                 .flatMap(a -> {
                     return a.getAccountList().stream();
                 })
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()));*/
 
+
+        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.close();
+        sessionFactory.close();
 
 
 
