@@ -26,5 +26,7 @@ public class Client {
     @JoinColumn(name = "CLI_ADD_ID", referencedColumnName = "ADD_ID")
     public Address address;
 
+    // TODO: 23.02.2022 naprawić listę
+    //Could not determine type for: java.util.List, at table: Client, for columns: [org.hibernate.mapping.Column(accountList)]
     public List<AccountService> accountList = new ArrayList<>();
 }
